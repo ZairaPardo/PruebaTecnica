@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Prueba Tecnica</title>
+
+<!-- Bootstrap -->
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+	type="text/css">
+<!-- Font Awesome -->
+<link href="/fontawesome/css/fontawesome.min.css" rel="stylesheet">
+<link href="/fontawesome/css/brands.min.css" rel="stylesheet">
+<link href="/fontawesome/css/solid.min.css" rel="stylesheet">
+<!-- DataTables con BootStrap -->
+<link rel="stylesheet" type="text/css"
+	href="/datatables/DataTables-1.12.1/css/dataTables.bootstrap5.min.css" />
+</head>
+<body>
+	<!-- BUTTON -->
+
+	<a th:href="@{/prueba/cliente/crear}" class="btn btn-outline-success"
+		id="btnC">Crear</a>
+
+	<!-- TABLE -->
+	<div class="container my-4">
+		<div class="row">
+			<table id="example" class="table table-dark table-striped">
+				<thead>
+					<tr>
+						<th>Numero de Documento</th>
+						<th>Nombres</th>
+						<th>Apellidos</th>
+						<th>Fecha de Nacimiento</th>
+						<th>Ciudad</th>
+						<th>Correo Electronico</th>
+						<th>Telefono</th>
+						<th>Ocupacion</th>
+						<th>Viabilidad</th>
+						<th>Options</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="cliente : ${cliente}">
+						<td th:text="${cliente.numDocumento}"></td>
+						<td th:text="${cliente.nombre}"></td>
+						<td th:text="${cliente.apellido}"></td>
+						<td th:text="${cliente.fechaNacimiento}"></td>
+						<td th:text="${cliente.ciudad}"></td>
+						<td th:text="${cliente.correo}"></td>
+						<td th:text="${cliente.telefono}"></td>
+						<td th:text="${cliente.ocupacion}"></td>
+						<td th:text="${cliente.viabilidad}"></td>
+						<td><a
+							th:href="@{'/prueba/cliente/editar'+'/'+ ${cliente.numDocumento}}"
+							class="btn btn-success">Editar</a>
+
+							<button
+								th:onclick="@{'confirmar('+ ${cliente.numDocumento} +')'}"
+								class="btn btn-danger" data-bs-toggle="modal"
+								data-bs-target="#ModalC">Eliminar</button></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<input type="hidden" id="txt_id">
+
+	<!-- Modal -->
+
+	<div class="modal fade" id="ModalC" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header" style="background: #A0D8FF">
+					<i class="fa-solid fa-triangle-exclamation"></i>
+					<h5 class="modal-title" id="exampleModalLabel">ALERTA!!</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">¿Esta seguro de eliminar este barrio?</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-primary" onclick="eliminar()">Aceptar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- Script Bootstrap -->
+	<script src="/bootstrap/js/bootstrap.min.js" crossorigin="anonymous"></script>
+	<!-- JQuery -->
+	<script type="text/javascript" src="/JQuery/jquery-3.6.1.min.js"></script>
+	<!-- DataTables -->
+	<script type="text/javascript"
+		src="/datatables/DataTables-1.12.1/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript"
+		src="/datatables/DataTables-1.12.1/js/dataTables.bootstrap5.min.js"></script>
+	<script type="text/javascript"
+		src="/datatables/Buttons-2.3.2/js/dataTables.buttons.min.js"></script>
+	<script type="text/javascript"
+		src="/datatables/Buttons-2.3.2/js/buttons.html5.min.js"></script>
+
+	<!-- JavaScript -->
+	<script type="text/javascript" src="/clienteJS/cliente.js"></script>
+
+</body>
+</html>

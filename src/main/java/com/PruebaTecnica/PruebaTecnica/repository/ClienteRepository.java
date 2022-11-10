@@ -1,0 +1,12 @@
+package com.PruebaTecnica.PruebaTecnica.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.PruebaTecnica.PruebaTecnica.modelo.Cliente;
+
+@Repository
+public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
+
+	
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Prueba</title>
+
+<!-- Bootstrap -->
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+	type="text/css">
+
+<link rel="stylesheet" href="/Awesomplete/awesomplete.base.css">
+<link rel="stylesheet" href="/Awesomplete/awesomplete.theme.css">
+</head>
+<body>
+
+	<!-- FORM -->
+
+	<div class="container my-4">
+		<div class="row justify-content-center">
+			<form class="col-md-6 my-4 bg-light" th:action="@{/prueba/cliente}"
+				th:object="${cliente}" method="POST">
+				<figure class="text-center">
+					<blockquote class="blockquote">
+						<p>Editar Cliente</p>
+					</blockquote>
+					<figcaption class="blockquote-footer">
+						Ingresa los datos <cite title="Source Title">para editar
+							este cliente</cite>
+					</figcaption>
+				</figure>
+				<label>Documento: </label> <input type="number"
+					th:field="*{numDocumento}" class="form-control"
+					placeholder="Ingrese el numero de documento" required> <br>
+				<label>Nombre:</label> <input type="text" th:field="*{nombre}"
+					class="form-control" placeholder="Ingrese Nombre" required>
+				<br> <label>Apellidos:</label> <input type="text"
+					th:field="*{apellido}" class="form-control"
+					placeholder="Ingrese Apellido" required><br> <label>Fecha
+					Nacimiento: </label> <input type="date" onblur="calcularEdad(this.value)"
+					th:field="*{fechaNacimiento}" min="1920/01/01" class="form-control"
+					id="date"> <br> <label>Ciudad: </label> <input
+					th:field="*{ciudad}" class="awesomplete form-control" type="text"
+					id="nombre" autocomplete="off" placeholder="Ciudad"
+					data-list="Bogotá,Cali,Bucaramanga,Medellin,Barranquilla"
+					data-minChars="1"> <br> <br> <label>Correo:
+				</label> <input type="email" th:field="*{correo}" class="form-control"
+					placeholder="ingrese su e-mail" id="correo"> <br> <label>Telefono:
+				</label> <input type="number" th:field="*{telefono}" class="form-control"
+					placeholder="ingrese su telefono" id="telefono"> <br>
+				<label>Ocupación: </label> <select class="form-select"
+					th:field="*{ocupacion}" id="ocupacion">
+					<option value="">-seleccione una Ocupacion-</option>
+					<option value="Empleado">Empleado</option>
+					<option value="Independiente">Independiente</option>
+					<option value="Pensionado">Pensionado</option>
+				</select> <br>
+				<div class="box-footer">
+					<button class="btn btn-danger">Crear</button>
+				</div>
+				<br> <input type="hidden" th:field="*{viabilidad}"
+					class="form-control" id="via">
+			</form>
+		</div>
+	</div>
+	<script type="text/javascript" src="/Awesomplete/awesomplete.min.js"></script>
+	<!-- Script Bootstrap -->
+	<script src="/bootstrap/js/bootstrap.min.js" crossorigin="anonymous"></script>
+	<!-- JQuery -->
+	<script type="text/javascript" src="/JQuery/jquery-3.6.1.min.js"></script>
+	<!-- JavaScript -->
+	<script type="text/javascript" src="/clienteJS/cliente.js"></script>
+
+</body>
+</html>
